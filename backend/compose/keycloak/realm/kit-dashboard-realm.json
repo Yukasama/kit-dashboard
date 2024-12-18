@@ -1,0 +1,50 @@
+{
+  "realm": "kit-dashboard",
+  "enabled": true,
+  "clients": [
+    {
+      "clientId": "nextjs-client",
+      "enabled": true,
+      "protocol": "openid-connect",
+      "clientAuthenticatorType": "client-secret",
+      "redirectUris": ["http://localhost:3000/api/auth/callback"],
+      "webOrigins": ["http://localhost:3000"],
+      "publicClient": false,
+      "secret": "CHANGE_ME_LATER",
+      "authorizationServicesEnabled": true,
+      "standardFlowEnabled": true
+    },
+    {
+      "clientId": "spring-client",
+      "enabled": true,
+      "protocol": "openid-connect",
+      "clientAuthenticatorType": "client-secret",
+      "redirectUris": ["http://localhost:8080/auth/callback"],
+      "webOrigins": ["http://localhost:3000"],
+      "publicClient": false,
+      "secret": "CHANGE_ME_LATER",
+      "authorizationServicesEnabled": true,
+      "standardFlowEnabled": true
+    }
+  ],
+  "identityProviders": [
+    {
+      "alias": "google",
+      "providerId": "google",
+      "enabled": true,
+      "updateProfileFirstLoginMode": "on",
+      "trustEmail": true,
+      "authenticateByDefault": false,
+      "storeToken": true,
+      "addReadTokenRoleOnCreate": false,
+      "config": {
+        "clientId": "AUTH_GOOGLE_ID",
+        "clientSecret": "AUTH_GOOGLE_SECRET",
+        "authorizationUrl": "https://accounts.google.com/o/oauth2/auth",
+        "tokenUrl": "https://oauth2.googleapis.com/token",
+        "userInfoUrl": "https://www.googleapis.com/oauth2/v3/userinfo",
+        "defaultScope": "email profile openid"
+      }
+    }
+  ]
+}

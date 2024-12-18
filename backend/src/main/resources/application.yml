@@ -1,0 +1,31 @@
+server:
+  port: 8080
+
+spring:
+  application:
+    name: backend
+  security:
+    oauth2:
+      client:
+        registration:
+          keycloak:
+            client-id: spring-client
+            client-secret: CHANGE_ME_LATER
+            authorization-grant-type: authorization_code
+            redirect-uri: "http://localhost:8080/auth/callback"
+            scope: openid
+        provider:
+          keycloak:
+            issuer-uri: http://localhost:8081/realms/kit-dashboard
+            authorization-uri: http://localhost:8081/realms/kit-dashboard/protocol/openid-connect/auth
+            token-uri: http://localhost:8081/realms/kit-dashboard/protocol/openid-connect/token
+            user-info-uri: http://localhost:8081/realms/kit-dashboard/protocol/openid-connect/userinfo
+            jwk-set-uri: http://localhost:8081/realms/kit-dashboard/protocol/openid-connect/certs
+
+frontend:
+  url: http://localhost:3000
+
+logging:
+  level:
+    com.dashboard.backend: DEBUG
+    org.springframework.web: DEBUG

@@ -35,3 +35,8 @@ out/
 
 ### VS Code ###
 .vscode/
+
+certificate.pem
+keystore.p12
+private.key
+truststore.jks

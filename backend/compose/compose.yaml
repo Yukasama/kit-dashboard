@@ -1,0 +1,16 @@
+include:
+  - path: ./keycloak/compose.yaml
+  - path: ./nginx/compose.yaml
+  - path: ./postgres/compose.yaml
+
+services:
+  backend:
+    build:
+      context: .
+      dockerfile: ../Dockerfile
+    container_name: backend
+    ports:
+      - "8080:8080"
+    depends_on:
+      - postgres
+      - keycloak

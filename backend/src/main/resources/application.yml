@@ -1,0 +1,35 @@
+server:
+  ssl.bundle: microservice
+
+spring:
+  application.name: backend
+  security:
+    oauth2:
+      client:
+        registration:
+          keycloak:
+            client-id: spring-client
+            client-secret: CHANGE_ME_LATER
+            authorization-grant-type: authorization_code
+            redirect-uri: "https://localhost/auth/callback"
+            scope: openid
+        provider:
+          keycloak:
+            issuer-uri: https://localhost/auth/realms/kit-dashboard
+            authorization-uri: https://localhost/auth/realms/kit-dashboard/protocol/openid-connect/auth
+            token-uri: https://localhost/auth/realms/kit-dashboard/protocol/openid-connect/token
+            user-info-uri: https://localhost/auth/realms/kit-dashboard/protocol/openid-connect/userinfo
+            jwk-set-uri: https://localhost/auth/realms/kit-dashboard/protocol/openid-connect/certs
+  ssl.bundle.pem.microservice:
+    reload-on-update: true
+    keystore:
+      private-key: "classpath:private.key"
+      certificate: "classpath:certificate.pem"
+    truststore:
+      certificate: "classpath:certificate.pem"
+  threads.virtual.enabled: true
+
+logging:
+  level:
+    com.dashboard.backend: DEBUG
+    org.springframework.web: DEBUG
